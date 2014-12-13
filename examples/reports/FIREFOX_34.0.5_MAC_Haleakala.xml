@@ -2,19 +2,19 @@
 <testsuites name="Haleakala"
              errors="0"
              failures="1"
-             tests="7">
+             tests="6">
   
   <testsuite errors="0" failures="1" hostname="" id=""
-    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="5"
-    tests="7" time="" timestamp="">
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="4"
+    tests="6" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 184 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 66 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Timed out while waiting for element &lt;optgroup[label=Reservable Activities]&gt; to be present for 250 milliseconds.">
+      <testcase name="Timed out while waiting for element &lt;#entryStartDate&gt; to be present for 5000 milliseconds.">
         
           <failure message="Expected &quot;visible&quot; but got: &quot;not found&quot;"></failure>
         
