@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="Haleakala"
+             errors="0"
+             failures="1"
+             tests="7">
+  
+  <testsuite errors="0" failures="1" hostname="" id=""
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="5"
+    tests="7" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was visible after 184 milliseconds.">
+        
+        
+      </testcase>
+    
+      <testcase name="Timed out while waiting for element &lt;optgroup[label=Reservable Activities]&gt; to be present for 250 milliseconds.">
+        
+          <failure message="Expected &quot;visible&quot; but got: &quot;not found&quot;"></failure>
+        
+        
+      </testcase>
+    
+    
+    </testsuite>
+  
+</testsuites>
