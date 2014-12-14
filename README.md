@@ -10,7 +10,7 @@ Setup Local Environment
 3. Download latest Selenium server from http://selenium-release.storage.googleapis.com/index.html
   - Click on the latest version
   - Click on selenium-server-standalone-(version number).jar
-  - You can leave it in the Downloads folder
+  - Move it to the repo.
 
 Run Checks
 -----

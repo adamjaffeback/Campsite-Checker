@@ -1,26 +1,30 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites name="Haleakala"
-             errors="0"
+             errors="1"
              failures="1"
-             tests="6">
+             tests="4">
   
-  <testsuite errors="0" failures="1" hostname="" id=""
-    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="4"
-    tests="6" time="" timestamp="">
+  <testsuite errors="1" failures="1" hostname="" id=""
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="2"
+    tests="4" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 66 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 80 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Timed out while waiting for element &lt;#entryStartDate&gt; to be present for 5000 milliseconds.">
+      <testcase name="Timed out while waiting for element &lt;#permitTypeId option[value=1451140610]&gt; to be present for 4000 milliseconds.">
         
           <failure message="Expected &quot;visible&quot; but got: &quot;not found&quot;"></failure>
         
         
       </testcase>
     
+    
+      <system-err>
+        Unable to locate element: &quot;option[value=1451140610]&quot; using: css selector
+      </system-err>
     
     </testsuite>
   
