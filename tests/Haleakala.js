@@ -9,11 +9,15 @@ module.exports = {
       .keys(['\uE015', '\uE006']) // arrow down, enter
       .waitForElementVisible('#entryStartDate', 5000) // wait for other form options to show
 
-      .setValue('input[id=entryStartDate]', '01/25/2015')
+      .setValue('input[id=entryStartDate]', '04/06/2015')
       .setValue('input[id=lengthOfStay]', '1')  
       .submitForm('form[id=unifSearchForm]')
-      .waitForElementVisible('body', 5000) // wait for availability page to load
-      
+
+      .waitForElementVisible('table #calendar tbody tr td.a', 2000, true, function() {
+        // call to twillio will go here.
+        return "Success!";
+      }, 'No permit found.')
+
       .end();
   }
 };
