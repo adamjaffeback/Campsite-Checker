@@ -1,0 +1,30 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="Haleakala"
+             errors="0"
+             failures="0"
+             tests="3">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="0"
+    tests="3" time="" timestamp="">
+    
+    
+      <testcase name="Element &lt;body&gt; was visible after 73 milliseconds.">
+        
+        
+      </testcase>
+    
+      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1871 milliseconds.">
+        
+        
+      </testcase>
+    
+      <testcase name="Element &lt;body&gt; was visible after 20 milliseconds.">
+        
+        
+      </testcase>
+    
+    
+    </testsuite>
+  
+</testsuites>

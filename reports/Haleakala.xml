@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<testsuites name="Haleakala"
+             errors="0"
+             failures="0"
+             tests="3">
+  
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="3"
+    tests="3" time="" timestamp="">
+    
+    
+    
+      <system-err>
+        ARROW_DOWN is not defined
+      </system-err>
+    
+    </testsuite>
+  
+</testsuites>
