@@ -5,16 +5,20 @@ module.exports = {
       .url('http://www.recreation.gov/permits/Haleakala_National_Park_Cabin_Permits/r/wildernessAreaDetails.do?page=detail&contractCode=NRSO&parkId=112739')
       .waitForElementVisible('body', 1000)
       .click('select[id=permitTypeId]')
-      .waitForElementVisible('#permitTypeId option', 1000)
+      .execute('document.getElementById(\'permitTypeId\').options[1].selected = true')
+      .click('select:selected')
+      // .execute('document.getElementById(\'permitTypeId\').options[1].change()')
+      // .execute('document.getElementById(\'permitTypeId\').submit()')
       // .moveToElement('select[id=permitTypeId]', 10, 10)
       // ^tried to hover
       // .waitForElementVisible('#permitTypeId option[value=1451140610]', 4000)
       // ^does not pass
-      .click('option[value=1451140610]')
+      // .setValue('#permitTypeId.options[1].selected', 'true')
       // .click('select:nth-child(2)')
       // .click('select option[value=1451140610]')
       // .click('#permitTypeId option[value=1451140610]')
       // .click('#permitTypeId:nth-child(2)')
+      .waitForElementVisible('#entryStartDate', 5000)
       .end();
 
 
@@ -27,7 +31,6 @@ module.exports = {
 
       // after clicking on permit type:
 
-      // .waitForElementVisible('#entryStartDate', 5000)
       // .setValue('input[id=entryStartDate]', '01/25/2015')
       // .setValue('input[id=lengthOfStay]', '1')  
       // .submitForm('form[id=unifSearchForm]')
