@@ -2,19 +2,24 @@
 <testsuites name="Haleakala"
              errors="0"
              failures="0"
-             tests="2">
+             tests="3">
   
   <testsuite errors="0" failures="0" hostname="" id=""
     name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="0"
-    tests="2" time="" timestamp="">
+    tests="3" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 69 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 193 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1331 milliseconds.">
+      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1442 milliseconds.">
+        
+        
+      </testcase>
+    
+      <testcase name="Element &lt;body&gt; was visible after 19 milliseconds.">
         
         
       </testcase>
