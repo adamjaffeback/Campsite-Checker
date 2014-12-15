@@ -1,30 +1,24 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <testsuites name="Haleakala"
-             errors="1"
-             failures="1"
-             tests="3">
+             errors="0"
+             failures="0"
+             tests="2">
   
-  <testsuite errors="1" failures="1" hostname="" id=""
-    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="1"
-    tests="3" time="" timestamp="">
+  <testsuite errors="0" failures="0" hostname="" id=""
+    name="Look for available cabins in Haleakala NP, Hawai&#39;i" package="Haleakala" skipped="0"
+    tests="2" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 67 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 69 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Timed out while waiting for element &lt;#entryStartDate&gt; to be present for 5000 milliseconds.">
-        
-          <failure message="Expected &quot;visible&quot; but got: &quot;not found&quot;"></failure>
+      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1331 milliseconds.">
         
         
       </testcase>
     
-    
-      <system-err>
-        Unable to locate element: &quot;select:selected&quot; using: css selector
-      </system-err>
     
     </testsuite>
   
