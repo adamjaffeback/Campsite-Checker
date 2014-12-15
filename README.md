@@ -1,7 +1,7 @@
 Campsite-Checker
 ================
 
-Use End-to-End testing to check if campsites or permits have become available.
+Use the Nightwatch.js end-to-end testing framework to check if campsites or permits have become available.
 
 Setup Local Environment
 ------
@@ -11,6 +11,21 @@ Setup Local Environment
   - Click on the latest version
   - Click on selenium-server-standalone-(version number).jar
   - Move it to the repo.
+4. Open the `nightwatch.json` file in the main directiory for editing.
+  - Update line 13 with the name and path of your selenium server `.jar` file. 
+  - Save.
+5. Copy `nightwatch.json`.
+6. Paste it over the default file in `node_modules/nightwatch/bin/`.
 
 Run Checks
 -----
+Within the `Campsite-Checker/` directory:
+*`npm test`
+or
+*`./nightwatch -t`
+
+Creating Tests
+------
+See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
+
+There are also examples in `node_modules/nightwatch/examples/tests/google/`.
