@@ -20,9 +20,13 @@ Setup Local Environment
 Run Checks
 -----
 Within the `Campsite-Checker/` directory:
-*`npm test`
+```bash
+npm test
+```
 or
-*`./nightwatch -t`
+```bash
+./nightwatch -t
+```
 
 Creating Tests
 ------
