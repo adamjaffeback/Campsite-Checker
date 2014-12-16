@@ -14,12 +14,14 @@ module.exports = {
       .keys(['\uE015', '\uE006']) // arrow down, enter
       .waitForElementVisible('#entryStartDate', 5000) // wait for other form options to show
 
-      .setValue('input[id=entryStartDate]', '04/06/2015')
+      .setValue('input[id=entryStartDate]', '01/25/2015')
       .setValue('input[id=lengthOfStay]', '1')  
       .submitForm('form[id=unifSearchForm]')
 
-      .waitForElementVisible('table #calendar tbody tr td.a', 2000, true, function() {
-        
+      // Search for availability. If not found, kill tests
+      .waitForElementVisible('table #calendar tbody tr td.a', 2000, true)
+      // If found send message.
+      .waitForElementVisible('body', 1000, true, function() {
         
         var message = {
             "html": "<span>Haleakala Available!</span>",
