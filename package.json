@@ -4,8 +4,10 @@
   "description": "Automatically check regularly for open campsites, cabins, and permits.",
   "main": "index.js",
   "dependencies": {
+    "mandrill-api": "^1.0.41",
     "nightwatch": "^0.5.35",
-    "protractor": "^1.5.0"
+    "protractor": "^1.5.0",
+    "request": "^2.51.0"
   },
   "devDependencies": {},
   "scripts": {

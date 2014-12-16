@@ -9,17 +9,17 @@
     tests="3" time="" timestamp="">
     
     
-      <testcase name="Element &lt;body&gt; was visible after 71 milliseconds.">
+      <testcase name="Element &lt;body&gt; was visible after 81 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1462 milliseconds.">
+      <testcase name="Element &lt;#entryStartDate&gt; was visible after 1283 milliseconds.">
         
         
       </testcase>
     
-      <testcase name="No permit found.">
+      <testcase name="Element &lt;table #calendar tbody tr td.a&gt; was visible after 22 milliseconds.">
         
         
       </testcase>
