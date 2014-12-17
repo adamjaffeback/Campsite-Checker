@@ -32,7 +32,7 @@ See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 There are also examples in `node_modules/nightwatch/examples/tests/google/`.
 
 ##Todos
-- [ ] Setup cron job
-- [ ] Setup twilio for text messaging
+- [ ] Update README to include mandrill, etc.
+- [ ] Update README to include forever
 - [ ] Generalize code for other sites/locations/needs
 
