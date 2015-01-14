@@ -8,8 +8,9 @@ setInterval(function() {
 
 var runTests = function() {
   var currentTime = new Date();
+  currentTime = currentTime.toString() + "\n";
 
-  fs.appendFile('runlog.txt', currentTime.toString(), function(error) {
+  fs.appendFile('runlog.txt', currentTime, function(error) {
     if(error) {
       console.error(error);
     }
