@@ -3,7 +3,7 @@ var fs = require('fs');
 
 //run tests every 10 minutes (1000 * 60 * 10)
 setInterval(function() {
-  fs.appendFile
+  runTests();
 }, (1000 * 60 * 10));
 
 var runTests = function() {
