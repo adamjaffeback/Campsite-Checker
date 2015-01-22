@@ -1,7 +1,7 @@
-var api_key = require('../mandrillKey.js').api_key;
+var api_key = require('../personalInfo/mandrillKey.js').api_key;
 var mandrill = require('../node_modules/mandrill-api/mandrill.js');
 mandrill_client = new mandrill.Mandrill(api_key);
-var contactInfo = require('../personalContactInfo.js').contacts;
+var contactInfo = require('../personalInfo/personalContactInfo.js').contacts;
 
 module.exports = {
   "Look for available cabins in Haleakala NP, Hawai'i" : function (browser) {
