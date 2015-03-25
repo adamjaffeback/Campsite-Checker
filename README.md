@@ -1,5 +1,6 @@
 Campsite-Checker
 ================
+[![Stories in Ready](https://badge.waffle.io/adam-back/Campsite-Checker.svg?label=ready&title=Ready)](http://waffle.io/adam-back/Campsite-Checker)
 
 Use the Nightwatch.js end-to-end testing framework to check if campsites or permits have become available.
 
