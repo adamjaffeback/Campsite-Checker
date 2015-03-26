@@ -9,8 +9,8 @@
   "disable_colors": false,
 
   "selenium" : {
-    "start_process" : true,
-    "server_path" : "./selenium-server-standalone-2.44.0.jar",
+    "start_process" : false,
+    "server_path" : "./selenium-server-standalone-2.45.0.jar",
     "log_path" : "",
     "host" : "127.0.0.1",
     "port" : 4444,
