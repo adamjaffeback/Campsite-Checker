@@ -4,6 +4,7 @@ mandrill_client = new mandrill.Mandrill(api_key);
 var contactInfo = require('../Personal Info/personalContactInfo.js').contacts;
 
 module.exports = {
+  tags: ['skip'],
   "Look for available cabins in Haleakala NP, Hawai'i" : function (browser) {
     browser
 
