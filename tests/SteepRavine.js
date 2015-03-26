@@ -3,19 +3,43 @@ var mandrill = require('mandrill-api');
 mandrill_client = new mandrill.Mandrill(api_key);
 var contactInfo = require('../Personal Info/personalContactInfo.js').contacts;
 
+// Add two days to current date
+var startDate = new Date();
+startDate.setDate(startDate.getDate() + 2); 
+
+// format correctly
+var dd = startDate.getDate();
+var mm = startDate.getMonth() + 1;
+var y = startDate.getFullYear();
+
+var formattedStartDate = mm + '/'+ dd + '/'+ y;
+
 module.exports = {
   tags: ['run'],
   "Look for available cabins at Steep Ravine, Mt. Tamalpais SP" : function (browser) {
     browser
+
+      // navigate to main page
       .url('http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063')
       .waitForElementVisible('body', 1000)
-      .setValue('#campingDate.dateField', '03/27/2015')
+
+      // enter dates and flexibility
+      .setValue('#campingDate.dateField', formattedStartDate)
       .setValue('#lengthOfStay.ss', '1')  
       .click('#campingDateFlex') // click dropdown, <select> element
       .keys(['\uE015', '\uE015', '\uE006']) // arrow down twice, enter
+
+      // start filtering for cabins
+      .click('#loop')
+      .keys(['\uE015', '\uE015', '\uE015', '\uE006']) // arrow down three times, enter
+      .click('#lookingFor')
+      .keys(['\uE015', '\uE015', '\uE015', '\uE015', '\uE006']) // arrow down four times, enter
+      .waitForElementVisible('#camping_10001_3012', 1000)
+      .setValue('#camping_10001_3012.s.form-control', '2')
+
       .submitForm('#unifSearchForm')
       .waitForElementVisible('#calendar_view_switch', 5000) // wait for next page
-
+      
 
       // // Search for availability. If not found, kill tests
       // .waitForElementVisible('table #calendar tbody tr td.a', 2000, true)
