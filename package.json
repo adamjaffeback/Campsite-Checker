@@ -11,7 +11,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "./nightwatch -t"
+    "test": "./nightwatch -a run"
   },
   "repository": {
     "type": "git",
