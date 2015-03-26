@@ -16,7 +16,7 @@ var formattedStartDate = mm + '/'+ dd + '/'+ y;
 
 var sendMessage = function() {
   var message = {
-      "html": "<span>Steep Ravine Available</span>",
+      "html": "<span>Steep Ravine Available, search http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063 with date: " + formattedStartDate + "</span>",
       "subject": "Steep Ravine Available",
       "from_email": contactInfo.Adam.email,
       "from_name": "Campsite Alerts",
