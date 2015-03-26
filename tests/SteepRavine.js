@@ -14,6 +14,57 @@ var y = startDate.getFullYear();
 
 var formattedStartDate = mm + '/'+ dd + '/'+ y;
 
+var sendMessage = function() {
+  var message = {
+      "html": "<span>Steep Ravine Available</span>",
+      "subject": "Steep Ravine Available",
+      "from_email": contactInfo.Adam.email,
+      "from_name": "Campsite Alerts",
+      "to": [{
+              "email": contactInfo.Adam.phone,
+              "name": contactInfo.Adam.name,
+              "type": "to"
+          },
+          {
+              "email": contactInfo.Adam.email,
+              "name": contactInfo.Adam.name,
+              "type": "to"
+          },
+          {
+              "email": contactInfo.Anna.phone,
+              "name": contactInfo.Anna.name,
+              "type": "to"
+          },
+          {
+              "email": contactInfo.Anna.email,
+              "name": contactInfo.Anna.name,
+              "type": "to"
+          }],
+      "headers": {
+          "Reply-To": ""
+      },
+      "important": true,
+  };
+
+  var async = false;
+
+  mandrill_client.messages.send({"message": message, "async": async}, function(result) {
+      console.log(result);
+      /* Expected result
+      [{
+              "email": "recipient.email@example.com",
+              "status": "sent",
+              "reject_reason": "hard-bounce",
+              "_id": "abc123abc123abc123abc123abc123"
+          }]
+      */
+  }, function(e) {
+      // Mandrill returns the error as an object with name and message keys
+      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
+      // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
+  });
+};
+
 module.exports = {
   tags: ['run'],
   "Look for available cabins at Steep Ravine, Mt. Tamalpais SP" : function (browser) {
@@ -37,64 +88,17 @@ module.exports = {
       .waitForElementVisible('#camping_10001_3012', 1000)
       .setValue('#camping_10001_3012.s.form-control', '2')
 
+
       .submitForm('#unifSearchForm')
-      .waitForElementVisible('#calendar_view_switch', 5000) // wait for next page
-      
 
-      // // Search for availability. If not found, kill tests
-      // .waitForElementVisible('table #calendar tbody tr td.a', 2000, true)
-      // // If found send message.
-      // .waitForElementVisible('body', 1000, true, function() {
-        
-      //   var message = {
-      //       "html": "<span>Haleakala Available!</span>",
-      //       "subject": "Haleakala Cabin Available!",
-      //       "from_email": contactInfo.Adam.email,
-      //       "from_name": "Campsite Alerts",
-      //       "to": [{
-      //               "email": contactInfo.Adam.phone,
-      //               "name": contactInfo.Adam.name,
-      //               "type": "to"
-      //           },
-      //           {
-      //               "email": contactInfo.Adam.email,
-      //               "name": contactInfo.Adam.name,
-      //               "type": "to"
-      //           },
-      //           {
-      //               "email": contactInfo.Anna.phone,
-      //               "name": contactInfo.Anna.name,
-      //               "type": "to"
-      //           },
-      //           {
-      //               "email": contactInfo.Anna.email,
-      //               "name": contactInfo.Anna.name,
-      //               "type": "to"
-      //           }],
-      //       "headers": {
-      //           "Reply-To": ""
-      //       },
-      //       "important": true,
-      //   };
-
-      //   var async = false;
-
-      //   mandrill_client.messages.send({"message": message, "async": async}, function(result) {
-      //       console.log(result);
-      //       /* Expected result
-      //       [{
-      //               "email": "recipient.email@example.com",
-      //               "status": "sent",
-      //               "reject_reason": "hard-bounce",
-      //               "_id": "abc123abc123abc123abc123abc123"
-      //           }]
-      //       */
-      //   }, function(e) {
-      //       // Mandrill returns the error as an object with name and message keys
-      //       console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-      //       // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-      //   });
-      // })
+      // check for availability
+      .waitForElementVisible('#calendar_view_switch', 5000)
+      .waitForElementNotVisible('#colbody1 > div.alternativeSuggestion > div.msg.warning', 1000, true) 
+      // if passes this point, site found, send message
+      // otherwise, kill tests
+      .waitForElementVisible('body', 1000, true, function() {
+        sendMessage();
+      })
 
       .end();
   }
