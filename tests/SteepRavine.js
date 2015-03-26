@@ -10,12 +10,12 @@ module.exports = {
       .url('http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063')
       .waitForElementVisible('body', 1000)
       .setValue('#campingDate.dateField', '03/27/2015')
-      .setValue('#lengthOfStay', '1')  
+      .setValue('#lengthOfStay.ss', '1')  
       .click('#campingDateFlex') // click dropdown, <select> element
       .keys(['\uE015', '\uE015', '\uE006']) // arrow down twice, enter
-      // .waitForElementVisible('#entryStartDate', 5000) // wait for other form options to show
+      .submitForm('#unifSearchForm')
+      .waitForElementVisible('#calendar_view_switch', 5000) // wait for next page
 
-      // .submitForm('form[id=unifSearchForm]')
 
       // // Search for availability. If not found, kill tests
       // .waitForElementVisible('table #calendar tbody tr td.a', 2000, true)
