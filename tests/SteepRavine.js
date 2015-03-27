@@ -93,7 +93,7 @@ module.exports = {
 
       // check for availability
       .waitForElementVisible('#calendar_view_switch', 5000)
-      .waitForElementNotVisible('#colbody1 > div.alternativeSuggestion > div.msg.warning', 1000, true) 
+      .waitForElementNotPresent('#colbody1 > div.alternativeSuggestion > div.msg.warning', 1000, true) 
       // if passes this point, site found, send message
       // otherwise, kill tests
       .waitForElementVisible('body', 1000, true, function() {
