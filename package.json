@@ -6,6 +6,7 @@
   "dependencies": {
     "mandrill-api": "^1.0.41",
     "nightwatch": "^0.5.35",
+    "phantomjs": "^1.9.16",
     "protractor": "^1.5.0",
     "request": "^2.51.0"
   },
