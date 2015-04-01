@@ -18,7 +18,7 @@ Use the Nightwatch.js end-to-end testing framework to check if campsites or perm
 6. Paste it over the default file in `node_modules/nightwatch/bin/`.
 
 ##Run Automatic Checks
-Campsite Checker uses (forever)[https://github.com/foreverjs/forever] to run, well, forever, in the background of your computer.
+Campsite Checker uses [forever](https://github.com/foreverjs/forever) to run, well, forever, in the background of your computer.
 
 1. Open your command line window to the root directory for `Campsite-Checker/`.
 2. Run `forever start server.js`.
