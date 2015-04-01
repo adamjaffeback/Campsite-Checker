@@ -17,6 +17,7 @@ Use the Nightwatch.js end-to-end testing framework to check if campsites or perm
 5. Copy `nightwatch.json`.
 6. Paste it over the default file in `node_modules/nightwatch/bin/`.
 
+<<<<<<< HEAD
 ##Run Automatic Checks
 Campsite Checker uses [forever](https://github.com/foreverjs/forever) to run, well, forever, in the background of your computer.
 
@@ -28,22 +29,30 @@ Inside server.js there is a simple loop which runs `npm test` every 10 minutes. 
 To stop the tests, go back to the command line and root directory. Type `forever stop server.js`.
 
 ##Run Manual Checks
-Within the `Campsite-Checker/` directory:
+Tests which are in-use will be flagged with the "run" tag. This allows other tests to remain archived for future use, without the need to run them unneccessarily or delete them.
+
+To run tests, open a terminal window and navigate to the`Campsite-Checker/` directory, then enter:
 ```bash
 npm test
 ```
 or
 ```bash
-./nightwatch -t
+./nightwatch -a run
+```
+
+The default browser is currently Firefox, but PhantomJS could be another option. You would need to make sure tests are compatible with PhantomJS and edit the `npm test` script or enter:
+```bash
+./nightwatch -a run --env phantomjs
 ```
 ##Writing Tests
 See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 
 There are also examples in `node_modules/nightwatch/examples/tests/google/`.
 
-##Starting the Selenium Server
-If necessary, to start the selenium server:
-1. Open a terminal window to the root director `/Campsite-Checker/`.
+##Manually Start the Selenium-Standalone Server
+The `nightwatch.json` file asks the selenium process to start automatically, but sometimes you may wish to start the server manually for debugging purposes.
+
+1. Open a terminal window to the root director `Campsite-Checker/`.
 2. Enter `java -jar selenium-server-standalone-VERSION#.jar`.
 
 ##Todos
