@@ -10,14 +10,10 @@ Use the Nightwatch.js end-to-end testing framework to check if campsites or perm
 3. Download latest Selenium server from http://selenium-release.storage.googleapis.com/index.html
   - Click on the latest version
   - Click on selenium-server-standalone-(version number).jar
-  - Move it to the repo.
+
 4. Open the `nightwatch.json` file in the main directiory for editing.
-  - Update line 13 with the name and path of your selenium server `.jar` file. 
   - Save.
 5. Copy `nightwatch.json`.
-6. Paste it over the default file in `node_modules/nightwatch/bin/`.
-
-<<<<<<< HEAD
 ##Run Automatic Checks
 Campsite Checker uses [forever](https://github.com/foreverjs/forever) to run, well, forever, in the background of your computer.
 
@@ -32,18 +28,27 @@ To stop the tests, go back to the command line and root directory. Type `forever
 Tests which are in-use will be flagged with the "run" tag. This allows other tests to remain archived for future use, without the need to run them unneccessarily or delete them.
 
 To run tests, open a terminal window and navigate to the`Campsite-Checker/` directory, then enter:
-```bash
+
 npm test
-```
 or
 ```bash
-./nightwatch -a run
-```
-
-The default browser is currently Firefox, but PhantomJS could be another option. You would need to make sure tests are compatible with PhantomJS and edit the `npm test` script or enter:
+##Other Browsers
+The default browser is currently Firefox, but PhantomJS or Chrome could be other options. Check to ensure that your tests are compatible with different browsers by running tests from the command line using the `--env` flag.
 ```bash
 ./nightwatch -a run --env phantomjs
+or
+./nightwatch -a run --env chrome
 ```
+Once you're sure the tests are running the way you expect, you can edit the `npm test` script in the `package.json`:
+
+```bash
+"scripts": {
+  "test": "./nightwatch -a run --env chrome"
+},
+```
+
+Otherwise, the tests will continue running with the default browser.
+
 ##Writing Tests
 See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 
