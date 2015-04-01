@@ -41,6 +41,11 @@ See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 
 There are also examples in `node_modules/nightwatch/examples/tests/google/`.
 
+##Starting the Selenium Server
+If necessary, to start the selenium server:
+1. Open a terminal window to the root director `/Campsite-Checker/`.
+2. Enter `java -jar selenium-server-standalone-VERSION#.jar`.
+
 ##Todos
 - [ ] Update README to include mandrill, etc.
 - [ ] Update README to include forever
