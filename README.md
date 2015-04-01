@@ -17,7 +17,17 @@ Use the Nightwatch.js end-to-end testing framework to check if campsites or perm
 5. Copy `nightwatch.json`.
 6. Paste it over the default file in `node_modules/nightwatch/bin/`.
 
-##Run Checks
+##Run Automatic Checks
+Campsite Checker uses (forever)[https://github.com/foreverjs/forever] to run, well, forever, in the background of your computer.
+
+1. Open your command line window to the root directory for `Campsite-Checker/`.
+2. Run `forever start server.js`.
+
+Inside server.js there is a simple loop which runs `npm test` every 10 minutes. It also appends the event to `runlog.txt` to confirm that the test ran.
+
+To stop the tests, go back to the command line and root directory. Type `forever stop server.js`.
+
+##Run Manual Checks
 Within the `Campsite-Checker/` directory:
 ```bash
 npm test
@@ -26,8 +36,7 @@ or
 ```bash
 ./nightwatch -t
 ```
-
-##Creating Tests
+##Writing Tests
 See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 
 There are also examples in `node_modules/nightwatch/examples/tests/google/`.
