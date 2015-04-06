@@ -12,7 +12,7 @@
   },
   "devDependencies": {},
   "scripts": {
-    "test": "./nightwatch -a run"
+    "test": "./nightwatch -a run --env phantomjs"
   },
   "repository": {
     "type": "git",
