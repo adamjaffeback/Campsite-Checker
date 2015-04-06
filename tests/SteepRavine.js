@@ -83,6 +83,7 @@ module.exports = {
 
       // start filtering for cabins
       .click('#loop')
+      // .keys(['\uE015', '\uE015', '\uE015', '\uE006']) // (Firefox only) arrow down three times, enter
       .click('#loop > option:nth-child(4)') // S Rav Cabins 1-10
       .click('#lookingFor')
       // .keys(['\uE015', '\uE015', '\uE015', '\uE015', '\uE006']) // (Firefox only) arrow down four times, enter
