@@ -78,16 +78,18 @@ module.exports = {
       .setValue('#campingDate.dateField', formattedStartDate)
       .setValue('#lengthOfStay.ss', '1')  
       .click('#campingDateFlex') // click dropdown, <select> element
-      .keys(['\uE015', '\uE015', '\uE006']) // arrow down twice, enter
+      // .keys(['\uE015', '\uE015', '\uE006']) // (Firefox only) arrow down twice, enter 
+      .click('#campingDateFlex > option:nth-child(3)') // 4 Month Flexibility
 
       // start filtering for cabins
       .click('#loop')
-      .keys(['\uE015', '\uE015', '\uE015', '\uE006']) // arrow down three times, enter
+      // .keys(['\uE015', '\uE015', '\uE015', '\uE006']) // (Firefox only) arrow down three times, enter
+      .click('#loop > option:nth-child(4)') // S Rav Cabins 1-10
       .click('#lookingFor')
-      .keys(['\uE015', '\uE015', '\uE015', '\uE015', '\uE006']) // arrow down four times, enter
+      // .keys(['\uE015', '\uE015', '\uE015', '\uE015', '\uE006']) // (Firefox only) arrow down four times, enter
+      .click('#lookingFor > option:nth-child(5)') // Cabins or lodgings
       .waitForElementVisible('#camping_10001_3012', 1000)
-      .setValue('#camping_10001_3012.s.form-control', '2')
-
+      .setValue('#camping_10001_3012.s.form-control', '2') // Occupants
 
       .submitForm('#unifSearchForm')
 

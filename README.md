@@ -10,12 +10,10 @@ Use the Nightwatch.js end-to-end testing framework to check if campsites or perm
 3. Download latest Selenium server from http://selenium-release.storage.googleapis.com/index.html
   - Click on the latest version
   - Click on selenium-server-standalone-(version number).jar
-  - Move it to the repo.
+
 4. Open the `nightwatch.json` file in the main directiory for editing.
-  - Update line 13 with the name and path of your selenium server `.jar` file. 
   - Save.
 5. Copy `nightwatch.json`.
-6. Paste it over the default file in `node_modules/nightwatch/bin/`.
 
 ##Run Automatic Checks
 Campsite Checker uses [forever](https://github.com/foreverjs/forever) to run, well, forever, in the background of your computer.
@@ -28,18 +26,42 @@ Inside server.js there is a simple loop which runs `npm test` every 10 minutes. 
 To stop the tests, go back to the command line and root directory. Type `forever stop server.js`.
 
 ##Run Manual Checks
-Within the `Campsite-Checker/` directory:
+Tests which are in-use will be flagged with the "run" tag. This allows other tests to remain archived for future use, without the need to run them unneccessarily or delete them.
+
+To run tests, open a terminal window and navigate to the`Campsite-Checker/` directory, then enter:
 ```bash
 npm test
 ```
-or
+
+##Other Browsers
+### Chrome
+The default browser is currently PhantomJS, but Chrome could be another option. Check to ensure that your tests are compatible with different browsers by running tests from the command line using the `--env` flag.
 ```bash
-./nightwatch -t
+./nightwatch -a run --env chrome
 ```
+Once you're sure the tests are running the way you expect, you can edit the `npm test` script in the `package.json` to change the default browser:
+
+```bash
+"scripts": {
+  "test": "./nightwatch -a run --env chrome"
+},
+```
+
+### Firefox
+Firefox does not like dropdown selection menus. In `tests/SteepRavine.js`, you may notice commented-lines which indicate they are firefox only. These lines should generally be uncommented, with the lines below them being removed. 
+
+For some reason, you have to use keystrokes as a work-around. Here's a [Stack Overflow](http://stackoverflow.com/questions/27466980/nightwatch-cannot-find-click-on-dropdown-option) topic explaining the issue and solution.
+
 ##Writing Tests
 See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
 
 There are also examples in `node_modules/nightwatch/examples/tests/google/`.
+
+##Manually Start the Selenium-Standalone Server
+The `nightwatch.json` file asks the selenium process to start automatically, but sometimes you may wish to start the server manually for debugging purposes.
+
+1. Open a terminal window to the root director `Campsite-Checker/`.
+2. Enter `java -jar selenium-server-standalone-VERSION#.jar`.
 
 ##Todos
 - [ ] Update README to include mandrill, etc.

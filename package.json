@@ -4,14 +4,15 @@
   "description": "Automatically check regularly for open campsites, cabins, and permits.",
   "main": "index.js",
   "dependencies": {
+    "chromedriver": "^2.14.1",
     "mandrill-api": "^1.0.41",
     "nightwatch": "^0.5.35",
-    "protractor": "^1.5.0",
+    "phantomjs": "^1.9.16",
     "request": "^2.51.0"
   },
   "devDependencies": {},
   "scripts": {
-    "test": "./nightwatch -a run"
+    "test": "./nightwatch -a run --env phantomjs"
   },
   "repository": {
     "type": "git",
