@@ -32,19 +32,14 @@ To run tests, open a terminal window and navigate to the`Campsite-Checker/` dire
 ```bash
 npm test
 ```
-or
-```bash
-./nightwatch -a run
-```
 
 ##Other Browsers
-The default browser is currently Firefox, but PhantomJS or Chrome could be other options. Check to ensure that your tests are compatible with different browsers by running tests from the command line using the `--env` flag.
+### Chrome
+The default browser is currently PhantomJS, but Chrome could be another option. Check to ensure that your tests are compatible with different browsers by running tests from the command line using the `--env` flag.
 ```bash
-./nightwatch -a run --env phantomjs
-or
 ./nightwatch -a run --env chrome
 ```
-Once you're sure the tests are running the way you expect, you can edit the `npm test` script in the `package.json`:
+Once you're sure the tests are running the way you expect, you can edit the `npm test` script in the `package.json` to change the default browser:
 
 ```bash
 "scripts": {
@@ -52,7 +47,10 @@ Once you're sure the tests are running the way you expect, you can edit the `npm
 },
 ```
 
-Otherwise, the tests will continue running with the default browser.
+### Firefox
+Firefox does not like dropdown selection menus. In `tests/SteepRavine.js`, you may notice commented-lines which indicate they are firefox only. These lines should generally be uncommented, with the lines below them being removed. 
+
+For some reason, you have to use keystrokes as a work-around. Here's a [Stack Overflow](http://stackoverflow.com/questions/27466980/nightwatch-cannot-find-click-on-dropdown-option) topic explaining the issue and solution.
 
 ##Writing Tests
 See Nightwatch.js documentation: http://nightwatchjs.org/guide#usage
