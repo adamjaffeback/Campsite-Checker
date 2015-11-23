@@ -30,8 +30,4 @@ var server = app.listen( port, function() {
   }, ( 1000 * 60 * 60 * 24 * 7 ));
 });
 
-app.get( '*', function( req, res ) {
-  res.sendFile( 'runlog.txt', { root: __dirname + '/public' } );
-});
-
-
+app.use( express.static( __dirname + '/public' ) );
