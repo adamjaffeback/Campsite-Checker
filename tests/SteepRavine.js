@@ -1,11 +1,12 @@
-var api_key = require('../Personal Info/mandrillKey.js').api_key;
-var mandrill = require('mandrill-api');
-mandrill_client = new mandrill.Mandrill(api_key);
-var contactInfo = require('../Personal Info/personalContactInfo.js').contacts;
+var environment = 'local';
+var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
+var mandrill = require( 'mandrill-api' );
+var mandrill_client = new mandrill.Mandrill( config.api_key );
+var emailService = require( './emailService' );
 
 // Add two days to current date
 var startDate = new Date();
-startDate.setDate(startDate.getDate() + 2); 
+startDate.setDate(startDate.getDate() + 2);
 
 // format correctly
 var dd = startDate.getDate();
@@ -14,59 +15,8 @@ var y = startDate.getFullYear();
 
 var formattedStartDate = mm + '/'+ dd + '/'+ y;
 
-var sendMessage = function() {
-  var message = {
-      "html": "<span>Steep Ravine Available, search http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063 with date: " + formattedStartDate + "</span>",
-      "subject": "Steep Ravine Available",
-      "from_email": contactInfo.Adam.email,
-      "from_name": "Campsite Alerts",
-      "to": [{
-              "email": contactInfo.Adam.phone,
-              "name": contactInfo.Adam.name,
-              "type": "to"
-          },
-          {
-              "email": contactInfo.Adam.email,
-              "name": contactInfo.Adam.name,
-              "type": "to"
-          },
-          {
-              "email": contactInfo.Anna.phone,
-              "name": contactInfo.Anna.name,
-              "type": "to"
-          },
-          {
-              "email": contactInfo.Anna.email,
-              "name": contactInfo.Anna.name,
-              "type": "to"
-          }],
-      "headers": {
-          "Reply-To": ""
-      },
-      "important": true,
-  };
-
-  var async = false;
-
-  mandrill_client.messages.send({"message": message, "async": async}, function(result) {
-      console.log(result);
-      /* Expected result
-      [{
-              "email": "recipient.email@example.com",
-              "status": "sent",
-              "reject_reason": "hard-bounce",
-              "_id": "abc123abc123abc123abc123abc123"
-          }]
-      */
-  }, function(e) {
-      // Mandrill returns the error as an object with name and message keys
-      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-      // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-  });
-};
-
 module.exports = {
-  tags: ['run'],
+  tags: ['skip'],
   "Look for available cabins at Steep Ravine, Mt. Tamalpais SP" : function (browser) {
     browser
 
@@ -99,7 +49,7 @@ module.exports = {
       // if passes this point, site found, send message
       // otherwise, kill tests
       .waitForElementVisible('body', 1000, true, function() {
-        sendMessage();
+        emailService.sendEmail( 'Steep Ravine Available', 'Go look at http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063.' );
       })
 
       .end();

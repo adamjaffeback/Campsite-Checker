@@ -2,7 +2,6 @@ node_modules
 selenium*
 .DS_Store
 mandrillKey.js
-personalContactInfo.js
 runlog.txt
 reports/
 npm-debug*
