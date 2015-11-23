@@ -1,4 +1,4 @@
-exports.contacts = {
+module.exports = {
   local: {
     Anna: {
       'phone': null,
@@ -9,24 +9,24 @@ exports.contacts = {
       'email': null
     },
     SAR: {
-      'email': 'adamb@marinsar.org',
-      'password': 'dobsonian'
+      'email': null,
+      'password': null
     },
-    api_key : null
+    'api_key' : null
   },
   production: {
     Anna: {
-      'phone': process.ENV.ANNA_PHONE,
-      'email': process.ENV.ANNA_EMAIL
+      'phone': process.env.ANNA_PHONE,
+      'email': process.env.ANNA_EMAIL
     },
     Adam: {
-      'phone': process.ENV.ADAM_PHONE,
-      'email': process.ENV.ADAM_EMAIL
+      'phone': process.env.ADAM_PHONE,
+      'email': process.env.ADAM_EMAIL
     },
     SAR: {
-      'email': process.ENV.SAR_EMAIL,
-      'password': process.ENV.SAR_PW
+      'email': process.env.SAR_EMAIL,
+      'password': process.env.SAR_PW
     },
-    api_key: process.ENV.MANDRILL_KEY
+    api_key: process.env.MANDRILL_KEY
   }
 };

@@ -1,22 +1,17 @@
-var api_key = require('../Personal Info/mandrillKey.js').api_key;
-var mandrill = require('mandrill-api');
-mandrill_client = new mandrill.Mandrill(api_key);
-var contactInfo = require('../Personal Info/personalContactInfo.js').contacts;
+var environment = process.env.NODE_ENV || 'local';
+var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
+var mandrill = require( 'mandrill-api' );
+var mandrill_client = new mandrill.Mandrill( config.api_key );
 
-var sendMessage = function() {
-  var message = {
-      "html": "<span>Altra 75L Pack Available, search pro.arcteryx.com</span>",
-      "subject": "Altra Pack 75L Available",
-      "from_email": contactInfo.Adam.email,
+var sendMessage = function( message ) {
+var createdMessage = {
+      "html": "<span>" + message + "</span>",
+      "subject": "Altra Pack 75L",
+      "from_email": config.Adam.email,
       "from_name": "Pack Alert",
       "to": [{
-              "email": contactInfo.Adam.phone,
-              "name": contactInfo.Adam.name,
-              "type": "to"
-          },
-          {
-              "email": contactInfo.Adam.email,
-              "name": contactInfo.Adam.name,
+              "email": config.Adam.phone,
+              "name": config.Adam.name,
               "type": "to"
           }],
       "headers": {
@@ -27,7 +22,7 @@ var sendMessage = function() {
 
   var async = false;
 
-  mandrill_client.messages.send({"message": message, "async": async}, function(result) {
+  mandrill_client.messages.send({"message": createdMessage, "async": async}, function(result) {
       console.log(result);
       /* Expected result
       [{
@@ -44,18 +39,20 @@ var sendMessage = function() {
   });
 };
 
+console.log( 'node', config );
+
 module.exports = {
-  tags: ['run'],
+  tags: [ 'run' ],
   "Look for pack availability at Arcteryx" : function (browser) {
     browser
 
       // navigate to main page
-      .url('http://pro.arcteryx.com/')
-      .waitForElementVisible('body', 1000)
+      .url( 'http://pro.arcteryx.com/' )
+      .waitForElementVisible( 'body', 1000 )
 
       // log in
-      .setValue( '#header > div > div > form > span:nth-child(2) > input[type="text"]', contactInfo.SAR.email )
-      .setValue( '#header > div > div > form > span:nth-child(3) > input[type="password"]', contactInfo.SAR.password )
+      .setValue( '#header > div > div > form > span:nth-child(2) > input[type="text"]', config.SAR.email )
+      .setValue( '#header > div > div > form > span:nth-child(3) > input[type="password"]', config.SAR.password )
       .click( '#header > div > div > form > button' )
 
       // click beyond foot sizing page
@@ -73,14 +70,18 @@ module.exports = {
 
       // confirm on correct page
       .waitForElementVisible( '#divProduct > span', 1000 )
-      .assert.containsText( '#divProduct > span', 'ALTRA 75 BACKPACK MEN\'S' )
+      .getText( '#divProduct > span', function( result ) {
+        if ( result.value !== 'ALTRA 75 BACKPACK MEN\'S' ) {
+          sendMessage( 'Error with Arcteryx test. Did not reach backpack page.' );
+        }
+      })
 
       // check the src tag for 'out of stock'
       .getAttribute( '#divProduct > table > tbody > tr > td > div:nth-child(2) > a > img', 'src', function( result ) {
         if ( !result.value.match( /out-of-stock/ ) ) {
-          sendMessage();
+          sendMessage( 'Altra 75L Pack Available, search pro.arcteryx.com' );
         } else {
-          console.log( 'done' );
+          console.log( 'Done' );
         }
       })
       .end();

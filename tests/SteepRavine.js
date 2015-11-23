@@ -1,7 +1,7 @@
-var api_key = require('../Personal Info/mandrillKey.js').api_key;
-var mandrill = require('mandrill-api');
-mandrill_client = new mandrill.Mandrill(api_key);
-var contactInfo = require('../Personal Info/personalContactInfo.js').contacts;
+var environment = 'local';
+var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
+var mandrill = require( 'mandrill-api' );
+var mandrill_client = new mandrill.Mandrill( config.api_key );
 
 // Add two days to current date
 var startDate = new Date();
@@ -18,26 +18,26 @@ var sendMessage = function() {
   var message = {
       "html": "<span>Steep Ravine Available, search http://www.reserveamerica.com/camping/mount-tamalpais-sp/r/campgroundDetails.do?contractCode=CA&parkId=120063 with date: " + formattedStartDate + "</span>",
       "subject": "Steep Ravine Available",
-      "from_email": contactInfo.Adam.email,
+      "from_email": config.Adam.email,
       "from_name": "Campsite Alerts",
       "to": [{
-              "email": contactInfo.Adam.phone,
-              "name": contactInfo.Adam.name,
+              "email": config.Adam.phone,
+              "name": 'Adam',
               "type": "to"
           },
           {
-              "email": contactInfo.Adam.email,
-              "name": contactInfo.Adam.name,
+              "email": config.Adam.email,
+              "name": 'Adam',
               "type": "to"
           },
           {
-              "email": contactInfo.Anna.phone,
-              "name": contactInfo.Anna.name,
+              "email": config.Anna.phone,
+              "name": 'Anna',
               "type": "to"
           },
           {
-              "email": contactInfo.Anna.email,
-              "name": contactInfo.Anna.name,
+              "email": config.Anna.email,
+              "name": 'Anna',
               "type": "to"
           }],
       "headers": {
