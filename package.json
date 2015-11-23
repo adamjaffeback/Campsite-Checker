@@ -5,6 +5,7 @@
   "main": "index.js",
   "dependencies": {
     "chromedriver": "^2.14.1",
+    "express": "^4.13.3",
     "mandrill-api": "^1.0.41",
     "nightwatch": "^0.5.35",
     "phantomjs": "^1.9.16",
