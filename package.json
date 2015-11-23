@@ -9,6 +9,7 @@
     "mandrill-api": "^1.0.41",
     "nightwatch": "^0.5.35",
     "phantomjs": "^1.9.16",
+    "q": "^1.4.1",
     "request": "^2.51.0"
   },
   "devDependencies": {},
