@@ -66,7 +66,7 @@ var sendMessage = function() {
 };
 
 module.exports = {
-  tags: ['run'],
+  tags: ['skip'],
   "Look for available cabins at Steep Ravine, Mt. Tamalpais SP" : function (browser) {
     browser
 
