@@ -5,14 +5,14 @@ module.exports = {
       'email': null
     },
     Adam: {
-      'phone': '4193675212@vztext.com',
-      'email': 'adamback42@gmail.com'
+      'phone': null,
+      'email': null
     },
     SAR: {
-      'email': 'adamb@marinsar.org',
-      'password': 'dobsonian'
+      'email': null,
+      'password': null
     },
-    'api_key' : 'x7TxsWDnVNVYGH1vSr-hzA'
+    'api_key' : null
   },
   production: {
     Anna: {
