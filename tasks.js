@@ -7,13 +7,16 @@ exports.runTests = function() {
   var currentTime = new Date();
   currentTime = currentTime.toString() + "\n";
 
-  fs.appendFile( 'runlog.txt', currentTime, function( error ) {
-    if ( error ) {
-      console.error( error );
-    }
-  });
+  var run = Q.nfbind( child_process.exec );
+  var appendFile = Q.nfbind( fs.appendFile );
 
-  child_process.exec( 'npm test' );
+  return run( 'npm test' )
+  .then(function() {
+    return appendFile( 'runlog.txt', currentTime );
+  })
+  .catch(function( error ) {
+    emailService.sendEmail( 'Error', 'There was an error running the tests. Visit the logs. ' + error );
+  });
 };
 
 exports.resetLog = function() {
@@ -30,6 +33,8 @@ exports.resetLog = function() {
   })
   .then(function() {
     return writeFile( 'runlog.txt', currentTime );
+  })
+  .catch(function( error ) {
+    emailService.sendEmail( 'Error Resetting Log', error );
   });
-
 };

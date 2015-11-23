@@ -13,8 +13,7 @@ var server = app.listen(3000, function() {
   // * 6 - 6 hours
   setInterval(function() {
     tasks.runTests();
-  // }, ( 1000 * 60 * 60 * 6 ));
-  }, ( 1000 * 20 ));
+  }, ( 1000 * 60 * 60 * 6 ));
 
   // reset logs every week
   // 1000 * 60 - one minute
@@ -22,12 +21,8 @@ var server = app.listen(3000, function() {
   // * 24 - 24 hours
   // * 7 - 7 days
   setInterval(function() {
-    tasks.resetLog()
-    .catch(function( error ) {
-      emailService.sendEmail( 'Error Resetting Log', 'error' );
-    });
-  // }, ( 1000 * 60 * 60 * 24 * 7 ));
-  }, ( 1000 * 60 ));
+    tasks.resetLog();
+  }, ( 1000 * 60 * 60 * 24 * 7 ));
 });
 
 app.get( '*', function( req, res ) {

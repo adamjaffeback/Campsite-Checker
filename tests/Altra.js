@@ -39,8 +39,6 @@ var createdMessage = {
   });
 };
 
-console.log( 'node', config );
-
 module.exports = {
   tags: [ 'run' ],
   "Look for pack availability at Arcteryx" : function (browser) {
