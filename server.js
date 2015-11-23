@@ -1,10 +1,13 @@
 var tasks = require( './tasks' );
 var Q = require( 'q' );
 var emailService = require( './emailService' );
+var logger = require( 'morgan' );
 
 var express = require( 'express' );
 var app = express();
 var port = process.env.PORT || 3000;
+
+app.use( logger( 'dev' ) );
 
 var server = app.listen( port, function() {
   console.log( 'Listening on port %s...', server.address().port );
@@ -14,7 +17,8 @@ var server = app.listen( port, function() {
   // * 6 - 6 hours
   setInterval(function() {
     tasks.runTests();
-  }, ( 1000 * 60 * 60 * 6 ));
+  // }, ( 1000 * 60 * 60 * 6 ));
+  }, ( 1000 * 10 ));
 
   // reset logs every week
   // 1000 * 60 - one minute
@@ -27,7 +31,7 @@ var server = app.listen( port, function() {
 });
 
 app.get( '*', function( req, res ) {
-  res.sendFile( 'runlog.txt', { root: './' } );
+  res.sendFile( 'runlog.txt', { root: __dirname + '/public' } );
 });
 
 
