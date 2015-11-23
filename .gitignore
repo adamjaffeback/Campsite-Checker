@@ -1,5 +1,5 @@
 node_modules
-selenium*
+selenium-debug.log
 .DS_Store
 mandrillKey.js
 runlog.txt
