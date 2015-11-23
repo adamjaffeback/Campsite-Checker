@@ -12,7 +12,7 @@ exports.runTests = function() {
 
   return run( 'npm test' )
   .then(function() {
-    return appendFile( 'runlog.txt', currentTime );
+    return appendFile( __dirname + '/public/runlog.txt', currentTime );
   })
   .catch(function( error ) {
     emailService.sendEmail( 'Error', 'There was an error running the tests. Visit the logs. ' + error );
@@ -26,13 +26,13 @@ exports.resetLog = function() {
   var readFile = Q.nfbind( fs.readFile );
   var writeFile = Q.nfbind( fs.writeFile );
 
-  return readFile( 'runlog.txt', 'utf8' )
+  return readFile( __dirname + '/public/runlog.txt', 'utf8' )
   .then(function( data ) {
     var message = 'I\'ve been working hard all week. Here\'s what I\'ve been up to:\n' + data;
     return emailService.sendEmail( 'Weekly Summary', message );
   })
   .then(function() {
-    return writeFile( 'runlog.txt', currentTime );
+    return writeFile( __dirname + '/public/runlog.txt', currentTime );
   })
   .catch(function( error ) {
     emailService.sendEmail( 'Error Resetting Log', error );
