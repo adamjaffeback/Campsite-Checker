@@ -11,6 +11,8 @@ exports.runTests = function() {
   var appendFile = Q.nfbind( fs.appendFile );
 
   return run( 'npm test' )
+  // do away with below
+  // have each test write to db
   .then(function() {
     return appendFile( __dirname + '/public/runlog.txt', currentTime );
   })
@@ -19,9 +21,9 @@ exports.runTests = function() {
   });
 };
 
-exports.resetLog = function() {
+exports.sendPeriodicUpdate = function() {
   var currentTime = new Date();
-  currentTime = currentTime.toString() + ": Started new file\n";
+  currentTime = currentTime.toString();
 
   var readFile = Q.nfbind( fs.readFile );
   var writeFile = Q.nfbind( fs.writeFile );

@@ -12,7 +12,13 @@ module.exports = {
       'email': null,
       'password': null
     },
-    'api_key' : null
+    'api_key' : null,
+    Mongo: {
+      host: null,
+      port: null,
+      name: null,
+      password: null
+    }
   },
   production: {
     Anna: {
@@ -27,6 +33,12 @@ module.exports = {
       'email': process.env.SAR_EMAIL,
       'password': process.env.SAR_PW
     },
-    api_key: process.env.MANDRILL_KEY
+    api_key: process.env.MANDRILL_KEY,
+    Mongo: {
+      host: process.env.MONGO_HOST,
+      port: process.env.MONGO_PORT,
+      name: process.env.MONGO_NAME,
+      password: process.env.MONGO_PASSWORD
+    }
   }
 };

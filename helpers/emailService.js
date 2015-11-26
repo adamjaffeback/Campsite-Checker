@@ -1,5 +1,5 @@
-var environment = 'local';
-var config = require( './Personal Info/personalContactInfo.js' )[ environment ];
+var environment = process.env.NODE_ENV || 'local';
+var config = require( '../config/config' )[ environment ];
 var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
 var Q = require( 'q' );
