@@ -2,6 +2,7 @@ var environment = process.env.NODE_ENV || 'local';
 var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
 var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
+var models = require( '../models' );
 
 var sendMessage = function( message ) {
 var createdMessage = {
@@ -38,6 +39,8 @@ var createdMessage = {
       // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
   });
 };
+
+var runLog = new models.Run( { testName: 'Altra', time: new Date() } );
 
 module.exports = {
   tags: [ 'run' ],
@@ -77,11 +80,21 @@ module.exports = {
       // check the src tag for 'out of stock'
       .getAttribute( '#divProduct > table > tbody > tr > td > div:nth-child(2) > a > img', 'src', function( result ) {
         if ( !result.value.match( /out-of-stock/ ) ) {
+          runLog.success = true;
           sendMessage( 'Altra 75L Pack Available, search pro.arcteryx.com' );
         } else {
-          console.log( 'Done' );
+          runLog.success = false;
         }
       })
-      .end();
+      .end(function() {
+        runLog.finished = true;
+        runLog.save(function( error, savedLog ) {
+          if ( error ) {
+            sendMessage( 'Error with Arcteryx test. Did not save run log: ' + error );
+          } else {
+            console.log( 'Done searching for Altra:', savedLog );
+          }
+        });
+      });
   }
 };
