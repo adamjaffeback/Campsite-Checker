@@ -65,3 +65,4 @@ exports.sendPeriodicUpdate = function( period ) {
   .catch(function( error ) {
     emailService.sendEmail( 'Error Sending Update', error );
   });
+};
