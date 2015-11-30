@@ -4,6 +4,7 @@ var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
 var Run = require( '../models/run_model.js' );
 var emailService = require( '../helpers/emailService' );
+var db = require( '../helpers/start.js' ).db;
 
 var runLog = new Run( { testName: 'Altra', time: new Date() } );
 
@@ -38,6 +39,7 @@ module.exports = {
       .waitForElementVisible( '#divProduct > span', 1000 )
       .getText( '#divProduct > span', function( result ) {
         if ( result.value !== 'ALTRA 75 BACKPACK MEN\'S' ) {
+          console.log( 'no backpack found' );
           runLog.success = false;
           emailService.sendMessage( 'Error with Arcteryx Test', 'Did not reach backpack page.' );
         }
@@ -51,16 +53,19 @@ module.exports = {
         } else {
           runLog.success = false;
         }
-      })
-      .end(function() {
+
         runLog.finished = true;
+      })
+      .perform(function( client, done ) {
         runLog.save(function( error, savedLog ) {
           if ( error ) {
             sendMessage( 'Error with Arcteryx test. Did not save run log: ' + error );
           } else {
             console.log( 'Done searching for Altra:', savedLog );
           }
+          done();
         });
-      });
+      })
+      .end();
   }
 };
