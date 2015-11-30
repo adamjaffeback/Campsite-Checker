@@ -1,47 +1,11 @@
 var environment = process.env.NODE_ENV || 'local';
-var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
+var config = require( '../config/config.js' )[ environment ];
 var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
-var models = require( '../models' );
+var Run = require( '../models/run_model.js' );
 var emailService = require( '../helpers/emailService' );
 
-var sendMessage = function( message ) {
-var createdMessage = {
-      "html": "<span>" + message + "</span>",
-      "subject": "Altra Pack 75L",
-      "from_email": config.Adam.email,
-      "from_name": "Pack Alert",
-      "to": [{
-              "email": config.Adam.phone,
-              "name": config.Adam.name,
-              "type": "to"
-          }],
-      "headers": {
-          "Reply-To": ""
-      },
-      "important": true,
-  };
-
-  var async = false;
-
-  mandrill_client.messages.send({"message": createdMessage, "async": async}, function(result) {
-      console.log(result);
-      /* Expected result
-      [{
-              "email": "recipient.email@example.com",
-              "status": "sent",
-              "reject_reason": "hard-bounce",
-              "_id": "abc123abc123abc123abc123abc123"
-          }]
-      */
-  }, function(e) {
-      // Mandrill returns the error as an object with name and message keys
-      console.log('A mandrill error occurred: ' + e.name + ' - ' + e.message);
-      // A mandrill error occurred: Unknown_Subaccount - No subaccount exists with the id 'customer-123'
-  });
-};
-
-var runLog = new models.Run( { testName: 'Altra', time: new Date() } );
+var runLog = new Run( { testName: 'Altra', time: new Date() } );
 
 module.exports = {
   tags: [ 'run' ],
