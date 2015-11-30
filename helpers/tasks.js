@@ -1,23 +1,12 @@
 var child_process = require( 'child_process' );
-var fs = require( 'fs' );
 var Q = require( 'q' );
 var emailService = require( './emailService' );
+var model = require( '../models' );
 
 exports.runTests = function() {
-  var currentTime = new Date();
-  currentTime = currentTime.toString() + "\n";
-
-  var run = Q.nfbind( child_process.exec );
-  var appendFile = Q.nfbind( fs.appendFile );
-
-  return run( 'npm test' )
-  // do away with below
-  // have each test write to db
-  .then(function() {
-    return appendFile( __dirname + '/public/runlog.txt', currentTime );
-  })
+  return Q.nfcall( child_process.exec, 'npm test' )
   .catch(function( error ) {
-    emailService.sendEmail( 'Error', 'There was an error running the tests. Visit the logs. ' + error );
+    emailService.sendEmail( 'Error', 'There was an error running the tests: ' + error );
   });
 };
 
@@ -39,4 +28,3 @@ exports.sendPeriodicUpdate = function() {
   .catch(function( error ) {
     emailService.sendEmail( 'Error Resetting Log', error );
   });
-};
