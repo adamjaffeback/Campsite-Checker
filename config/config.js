@@ -13,7 +13,7 @@ module.exports = {
       'password': null
     },
     'api_key' : null,
-    'mongo_uri': null
+    'mongo_uri': 'mongodb://localhost/campsitechecker'
   },
   production: {
     Anna: {
