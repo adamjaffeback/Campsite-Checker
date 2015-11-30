@@ -3,6 +3,7 @@ var config = require( '../Personal Info/personalContactInfo.js' )[ environment ]
 var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
 var models = require( '../models' );
+var emailService = require( '../helpers/emailService' );
 
 var sendMessage = function( message ) {
 var createdMessage = {
@@ -73,7 +74,8 @@ module.exports = {
       .waitForElementVisible( '#divProduct > span', 1000 )
       .getText( '#divProduct > span', function( result ) {
         if ( result.value !== 'ALTRA 75 BACKPACK MEN\'S' ) {
-          sendMessage( 'Error with Arcteryx test. Did not reach backpack page.' );
+          runLog.success = false;
+          emailService.sendMessage( 'Error with Arcteryx Test', 'Did not reach backpack page.' );
         }
       })
 
@@ -81,7 +83,7 @@ module.exports = {
       .getAttribute( '#divProduct > table > tbody > tr > td > div:nth-child(2) > a > img', 'src', function( result ) {
         if ( !result.value.match( /out-of-stock/ ) ) {
           runLog.success = true;
-          sendMessage( 'Altra 75L Pack Available, search pro.arcteryx.com' );
+          emailService.sendMessage( 'Altra 75L Pack Available', 'Altra 75L Pack Available, search pro.arcteryx.com.' );
         } else {
           runLog.success = false;
         }
