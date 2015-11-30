@@ -6,10 +6,19 @@ var Run = require( '../models/run_model' );
 var Email = require( '../models/email_model' );
 
 exports.runTests = function() {
-  return Q.nfcall( child_process.exec, 'npm test' )
-  .catch(function( error ) {
-    emailService.sendEmail( 'Error', 'There was an error running the tests: ' + error );
+  var deferred = Q.defer();
+
+  child_process.exec( 'npm test', function ( error, stdout, stderr ) {
+    var didNotWork = error || stderr;
+
+    if ( didNotWork ) {
+      deferred.reject( didNotWork );
+    } else {
+      deferred.resolve( stdout );
+    }
   });
+
+  return deferred.promise;
 };
 
 exports.sendPeriodicUpdate = function( period ) {

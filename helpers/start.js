@@ -16,16 +16,13 @@ exports.onServerListen = function() {
     // 1000 * 60 - one minute
     // * 60 - sixty minutes, one hour
     // * 6 - 6 hours
-    setTimeout(function() {
+    setInterval(function() {
       tasks.runTests()
-      .then(function( success ) {
-        console.log( 'success', success );
-      })
       .catch(function( error ) {
         console.log( 'error', error );
-      })
-    // }, ( 1000 * 60 * 60 * 6 ));
-    }, ( 1000 * 10 ));
+        emailService.sendEmail( 'Error', 'There was an error running the tests: ' + error );
+      });
+    }, ( 1000 * 60 * 60 * 6 ));
 
     // reset logs every week
     // 1000 * 60 - one minute
@@ -39,3 +36,5 @@ exports.onServerListen = function() {
 
   db.on('error', console.error.bind( console, 'connection error:' ) );
 };
+
+exports.db = db;
