@@ -2,7 +2,7 @@ var environment = process.env.NODE_ENV || 'local';
 var config = require( '../config/config' )[ environment ];
 var mandrill = require( 'mandrill-api' );
 var mandrill_client = new mandrill.Mandrill( config.api_key );
-var models = require( '../models' );
+var Email = require( '../models/email_model.js' );
 var Q = require( 'q' );
 
 exports.sendEmail = function( subject, message, recipients ) {
@@ -45,7 +45,7 @@ exports.sendEmail = function( subject, message, recipients ) {
       "important": true
   };
 
-  var email = new models.Email( { to: recipientList, time: new Date(), reason: subject, message: message } );
+  var email = new Email( { to: recipientList, time: new Date(), reason: subject, message: message } );
 
   mandrill_client.messages.send( { "message": contents, "async": true }, function( result ) {
     email.success = true;

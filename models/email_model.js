@@ -8,4 +8,4 @@ var emailSchema = mongoose.Schema({
   success: Boolean
 });
 
-modules.exports = exports = mongoose.model( 'Email', emailSchema );
+module.exports = exports = mongoose.model( 'Email', emailSchema );

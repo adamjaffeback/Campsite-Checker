@@ -7,4 +7,4 @@ var runSchema = mongoose.Schema({
   finished: Boolean
 });
 
-modules.exports = exports = mongoose.model( 'Run', runSchema );
+module.exports = exports = mongoose.model( 'Run', runSchema );

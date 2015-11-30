@@ -12,4 +12,4 @@ var updateSchema = mongoose.Schema({
   finished: Boolean
 });
 
-modules.exports = exports = mongoose.model( 'periodicUpdate', updateSchema );
+module.exports = exports = mongoose.model( 'periodicUpdate', updateSchema );

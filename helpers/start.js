@@ -1,13 +1,14 @@
 var tasks = require( './tasks' );
 // db stuff
 var env = process.env.NODE_ENV || 'local';
-var config = require( './config/config' )[ env ];
+var port = process.env.PORT || 4321;
+var config = require( '../config/config' )[ env ];
 var mongoose = require( 'mongoose' );
 mongoose.connect( config.mongo_uri );
 var db = mongoose.connection;
 
 exports.onServerListen = function() {
-  console.log( 'Listening on port %s...', server.address().port );
+  console.log( 'Listening on port %s...', port );
 
   db.once('open', function() {
     console.log( 'Mongo successfully connected through mongoose.' );
@@ -15,9 +16,16 @@ exports.onServerListen = function() {
     // 1000 * 60 - one minute
     // * 60 - sixty minutes, one hour
     // * 6 - 6 hours
-    setInterval(function() {
-      tasks.runTests();
-    }, ( 1000 * 60 * 60 * 6 ));
+    setTimeout(function() {
+      tasks.runTests()
+      .then(function( success ) {
+        console.log( 'success', success );
+      })
+      .catch(function( error ) {
+        console.log( 'error', error );
+      })
+    // }, ( 1000 * 60 * 60 * 6 ));
+    }, ( 1000 * 10 ));
 
     // reset logs every week
     // 1000 * 60 - one minute
