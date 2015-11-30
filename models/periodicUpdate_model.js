@@ -5,10 +5,11 @@ var updateSchema = mongoose.Schema({
   period: String,
   time: Date,
   numberOfRuns: Number,
-  numberOfSuccess: Number,
-  numberOfEmail: Number,
-  numberOfFailure: Number,
+  numberOfSuccessRuns: Number,
+  numberOfFailRuns: Number,
+  numberOfSuccessEmails: Number,
+  numberOfFailEmails: Number,
   finished: Boolean
 });
 
-modules.exports = exports = mongoose.model( 'Periodic Update', updateSchema );
+modules.exports = exports = mongoose.model( 'periodicUpdate', updateSchema );
