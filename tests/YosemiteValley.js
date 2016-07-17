@@ -1,7 +1,7 @@
 var moment =  require( 'moment' );
 moment().format();
                                                               // Sun Jul 17 2016
-var startDate = moment( "07-17-2016", "MM-DD-YYYY" ).format( 'ddd MMM DD YYYY' );
+var startDate = moment( "07-20-2016", "MM-DD-YYYY" ).format( 'ddd MMM DD YYYY' );
 console.log( startDate );
 var nights = 2;
 
@@ -21,14 +21,13 @@ module.exports = {
       .click( '#search_avail' )
 
       // check for availability
-      .waitForElementVisible( '#colbody1 > div.searchSummary', 1000 )
-      .getText( '#colbody1 > div.searchSummary', function( result ) {
+      .waitForElementPresent( 'div.matchSummary', 12000 )
+      .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
           // found site at Upper Pines
           console.log( 'Found site at Upper Pines.' );
         }
       })
-      .end();
 
     // Lower Pines
       .url( 'http://www.reserveamerica.com/camping/lower-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70928' )
@@ -36,8 +35,8 @@ module.exports = {
       .setValue( '#campingDate', startDate )
       .setValue( '#lengthOfStay.ss', nights.toString() )
       .click( '#search_avail' )
-      .waitForElementVisible( '#colbody1 > div.searchSummary', 1000 )
-      .getText( '#colbody1 > div.searchSummary', function( result ) {
+      .waitForElementPresent( 'div.matchSummary', 1000 )
+      .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
           // found site at Lower Pines
           console.log( 'Found site at Lower Pines.' );
@@ -50,8 +49,8 @@ module.exports = {
       .setValue( '#campingDate', startDate )
       .setValue( '#lengthOfStay.ss', nights.toString() )
       .click( '#search_avail' )
-      .waitForElementVisible( '#colbody1 > div.searchSummary', 1000 )
-      .getText( '#colbody1 > div.searchSummary', function( result ) {
+      .waitForElementPresent( 'div.matchSummary', 1000 )
+      .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
           // found site at Lower Pines
           console.log( 'Found site at Lower Pines.' );
