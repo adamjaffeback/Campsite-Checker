@@ -1,23 +1,19 @@
-var environment = 'local';
-var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
-var mandrill = require( 'mandrill-api' );
-var mandrill_client = new mandrill.Mandrill( config.api_key );
-var emailService = require( './emailService' );
 var moment =  require( 'moment' );
-moment.format();
+moment().format();
                                                               // Sun Jul 17 2016
 var startDate = moment( "07-17-2016", "MM-DD-YYYY" ).format( 'ddd MMM DD YYYY' );
+console.log( startDate );
 var nights = 2;
 
 module.exports = {
-  tags: ['run'],
+  tags: [ "run" ],
   "Available campsites in Yosemite Valley" : function (browser) {
     browser
 
     // Upper Pines
       // navigate to upper pines
       .url( 'http://www.reserveamerica.com/camping/upper-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70925' )
-      .waitForElementVisible('body', 1000)
+      .waitForElementVisible( 'body', 1000 )
 
       // enter dates and duration
       .setValue( '#campingDate', startDate )
@@ -32,6 +28,7 @@ module.exports = {
           console.log( 'Found site at Upper Pines.' );
         }
       })
+      .end();
 
     // Lower Pines
       .url( 'http://www.reserveamerica.com/camping/lower-pines/r/campgroundDetails.do?contractCode=NRSO&parkId=70928' )
