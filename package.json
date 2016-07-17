@@ -16,6 +16,7 @@
   },
   "devDependencies": {},
   "scripts": {
+    "test-chrome": "./nightwatch -a run --env chrome",
     "test": "./nightwatch -a run --env phantomjs"
   },
   "repository": {
