@@ -1,9 +1,25 @@
+var email = require( '../emailService.js' );
 var moment =  require( 'moment' );
 moment().format();
                                                               // Sun Jul 17 2016
 var startDate = moment( "07-20-2016", "MM-DD-YYYY" ).format( 'ddd MMM DD YYYY' );
-console.log( startDate );
 var nights = 2;
+
+var yosemiteEmail = function() {
+  var message = 'Found site at ';
+
+  for ( var i = 0; i < foundSites.length; i++ ) {
+    message += foundSites[ i ] + ',';
+  }
+
+  // trim last comma
+  message = message.slice( 0, -1 );
+  message += ' for ' + nights + ' night(s) starting on ' + startDate + '.';
+
+  return email.sendEmail( 'Found Yosmite Campsite!', message );
+};
+
+var foundSites = [];
 
 module.exports = {
   tags: [ "run" ],
@@ -24,8 +40,7 @@ module.exports = {
       .waitForElementPresent( 'div.matchSummary', 12000 )
       .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
-          // found site at Upper Pines
-          console.log( 'Found site at Upper Pines.' );
+          foundSites.push( 'Upper Pines' );
         }
       })
 
@@ -38,8 +53,7 @@ module.exports = {
       .waitForElementPresent( 'div.matchSummary', 1000 )
       .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
-          // found site at Lower Pines
-          console.log( 'Found site at Lower Pines.' );
+          foundSites.push( 'Lower Pines' );
         }
       })
 
@@ -52,8 +66,17 @@ module.exports = {
       .waitForElementPresent( 'div.matchSummary', 1000 )
       .getAttribute( 'div.matchSummary', 'textContent', function( result ) {
         if ( !result.value.match( /0 site\(s\) available/ ) ) {
-          // found site at Lower Pines
-          console.log( 'Found site at Lower Pines.' );
+          foundSites.push( 'North Pines' );
+        }
+
+        if ( foundSites.length > 0 ) {
+          yosemiteEmail()
+          .then(function( success ) {
+            console.log( 'Sent email.' );
+          })
+          .catch(function( error ) {
+            console.error( 'Failed to send email:', error );
+          });
         }
       })
 
