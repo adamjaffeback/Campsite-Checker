@@ -6,15 +6,16 @@
   "dependencies": {
     "chromedriver": "^2.14.1",
     "express": "^4.13.3",
-    "mandrill-api": "^1.0.41",
+    "moment": "^2.14.1",
     "morgan": "^1.6.1",
     "nightwatch": "^0.5.35",
+    "node-mailer": "^0.1.1",
     "phantomjs": "^1.9.16",
-    "q": "^1.4.1",
-    "request": "^2.51.0"
+    "q": "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {
+    "test-chrome": "./nightwatch -a run --env chrome",
     "test": "./nightwatch -a run --env phantomjs"
   },
   "repository": {

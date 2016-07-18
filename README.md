@@ -39,16 +39,14 @@ The default browser is currently PhantomJS, but Chrome could be another option. 
 ```bash
 ./nightwatch -a run --env chrome
 ```
-Once you're sure the tests are running the way you expect, you can edit the `npm test` script in the `package.json` to change the default browser:
 
+This is already aliased in `package.json` because it's easier to see your development process when it pops open a browser, unlike the headless PhantomJS.
 ```bash
-"scripts": {
-  "test": "./nightwatch -a run --env chrome"
-},
+npm run test-chrome
 ```
 
 ### Firefox
-Firefox does not like dropdown selection menus. In `tests/SteepRavine.js`, you may notice commented-lines which indicate they are firefox only. These lines should generally be uncommented, with the lines below them being removed. 
+Firefox does not like dropdown selection menus. In `tests/SteepRavine.js`, you may notice commented-lines which indicate they are firefox only. These lines should generally be uncommented, with the lines below them being removed.
 
 For some reason, you have to use keystrokes as a work-around. Here's a [Stack Overflow](http://stackoverflow.com/questions/27466980/nightwatch-cannot-find-click-on-dropdown-option) topic explaining the issue and solution.
 
