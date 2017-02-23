@@ -10,9 +10,8 @@
 
   "selenium" : {
     "start_process" : true,
-    "server_path" : "./selenium-server-standalone-2.45.0.jar",
+    "server_path" : "./selenium-server-standalone-3.1.0.jar",
     "log_path" : "",
-    "host" : "127.0.0.1",
     "port" : 4444,
     "cli_args" : {
       "webdriver.chrome.driver" : "node_modules/.bin/chromedriver",
@@ -24,7 +23,7 @@
   "test_settings" : {
     "default" : {
       "launch_url" : "http://localhost",
-      "selenium_host" : "127.0.0.1",
+      "selenium_host" : "localhost",
       "selenium_port" : 4444,
       "silent" : true,
       "disable_colors": false,
@@ -36,30 +35,6 @@
         "browserName" : "firefox",
         "javascriptEnabled" : true,
         "acceptSslCerts" : true
-      }
-    },
-
-    "saucelabs" : {
-      "selenium_host" : "ondemand.saucelabs.com",
-      "selenium_port" : 80,
-      "username" : "${SAUCE_USERNAME}",
-      "access_key" : "${SAUCE_ACCESS_KEY}",
-      "use_ssl" : false,
-      "silent" : true,
-      "output" : true,
-      "screenshots" : {
-        "enabled" : false,
-        "path" : ""
-      },
-      "desiredCapabilities": {
-        "name" : "test-example",
-        "browserName": "firefox"
-      },
-      "globals" : {
-        "myGlobal" : "some_sauce_global"
-      },
-      "selenium" : {
-        "start_process" : false
       }
     },
 
@@ -80,21 +55,6 @@
         "javascriptEnabled" : true,
         "acceptSslCerts" : true,
         "phantomjs.binary.path" : "node_modules/.bin/phantomjs"
-      }
-    },
-
-    "browserstack" : {
-      "selenium" : {
-        "start_process" : false
-      },
-      "selenium_host" : "hub.browserstack.com",
-      "selenium_port" : 80,
-      "silent" : true,
-      "desiredCapabilities": {
-        "name" : "test-example",
-        "browserName": "firefox",
-        "browserstack.user" : "...",
-        "browserstack.key" : "..."
       }
     }
   }
