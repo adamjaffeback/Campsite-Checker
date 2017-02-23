@@ -1,7 +1,7 @@
 var environment = process.env.NODE_ENV || 'local';
 var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
-var mandrill = require( 'mandrill-api' );
-var mandrill_client = new mandrill.Mandrill( config.api_key );
+// var mandrill = require( 'mandrill-api' );
+// var mandrill_client = new mandrill.Mandrill( config.api_key );
 
 var sendMessage = function( message ) {
 var createdMessage = {
@@ -40,7 +40,7 @@ var createdMessage = {
 };
 
 module.exports = {
-  tags: [ 'skip' ],
+  '@tags': [ 'skip' ],
   "Look for pack availability at Arcteryx" : function (browser) {
     browser
 

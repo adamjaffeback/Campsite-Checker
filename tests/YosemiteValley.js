@@ -1,6 +1,5 @@
 var email = require( '../emailService.js' );
 var moment =  require( 'moment' );
-moment().format();
                                                               // Sun Jul 17 2016
 var startDate = moment( "07-20-2016", "MM-DD-YYYY" ).format( 'ddd MMM DD YYYY' );
 var nights = 2;
@@ -22,7 +21,7 @@ var yosemiteEmail = function() {
 var foundSites = [];
 
 module.exports = {
-  tags: [ "skip" ],
+  '@tags': [ "skip" ],
   "Available campsites in Yosemite Valley" : function (browser) {
     browser
 
