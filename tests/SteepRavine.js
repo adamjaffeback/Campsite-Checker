@@ -1,8 +1,8 @@
 var environment = 'local';
 var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
-var mandrill = require( 'mandrill-api' );
-var mandrill_client = new mandrill.Mandrill( config.api_key );
-var emailService = require( './emailService' );
+// var mandrill = require( 'mandrill-api' );
+// var mandrill_client = new mandrill.Mandrill( config.api_key );
+var emailService = require( '../emailService' );
 
 // Add two days to current date
 var startDate = new Date();
@@ -16,7 +16,7 @@ var y = startDate.getFullYear();
 var formattedStartDate = mm + '/'+ dd + '/'+ y;
 
 module.exports = {
-  tags: ['skip'],
+  '@tags': ['skip'],
   "Look for available cabins at Steep Ravine, Mt. Tamalpais SP" : function (browser) {
     browser
 

@@ -1,11 +1,11 @@
 var environment = 'local';
 var config = require( '../Personal Info/personalContactInfo.js' )[ environment ];
-var mandrill = require( 'mandrill-api' );
-var mandrill_client = new mandrill.Mandrill( config.api_key );
-var emailService = require( './emailService' );
+// var mandrill = require( 'mandrill-api' );
+// var mandrill_client = new mandrill.Mandrill( config.api_key );
+var emailService = require( '../emailService' );
 
 module.exports = {
-  tags: ['skip'],
+  '@tags': ['skip'],
   "Look for available cabins in Haleakala NP, Hawai'i" : function (browser) {
     browser
 

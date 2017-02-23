@@ -8,15 +8,15 @@
     "express": "^4.13.3",
     "moment": "^2.14.1",
     "morgan": "^1.6.1",
-    "nightwatch": "^0.5.35",
+    "nightwatch": "*",
     "node-mailer": "^0.1.1",
-    "phantomjs": "^1.9.16",
+    "phantomjs": "*",
     "q": "^1.4.1"
   },
   "devDependencies": {},
   "scripts": {
-    "test-chrome": "./nightwatch -a run --env chrome",
-    "test": "./nightwatch -a run --env phantomjs"
+    "test-chrome": "./nightwatch --tag run --env chrome",
+    "test": "./nightwatch --tag run --env phantomjs"
   },
   "repository": {
     "type": "git",

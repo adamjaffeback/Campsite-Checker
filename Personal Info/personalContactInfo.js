@@ -6,7 +6,8 @@ module.exports = {
     },
     Adam: {
       'phone': null,
-      'email': null
+      'email': null,
+      'pw': null
     },
     SAR: {
       'email': null,

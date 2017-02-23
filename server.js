@@ -1,5 +1,4 @@
 var tasks = require( './tasks' );
-var Q = require( 'q' );
 var emailService = require( './emailService' );
 var logger = require( 'morgan' );
 
