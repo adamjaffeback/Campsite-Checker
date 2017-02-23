@@ -22,7 +22,7 @@ var yosemiteEmail = function() {
 var foundSites = [];
 
 module.exports = {
-  tags: [ "run" ],
+  tags: [ "skip" ],
   "Available campsites in Yosemite Valley" : function (browser) {
     browser
 
