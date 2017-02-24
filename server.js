@@ -4,7 +4,7 @@ var logger = require( 'morgan' );
 
 var express = require( 'express' );
 var app = express();
-var port = process.env.PORT || 3000;
+var port = process.env.PORT || 3212;
 
 app.use( logger( 'dev' ) );
 
@@ -17,7 +17,7 @@ var server = app.listen( port, function() {
   setInterval(function() {
     tasks.runTests();
   // }, ( 1000 * 60 * 60 * 6 ));
-  }, ( 1000 * 10 ));
+  }, ( 1000 * 60 * 15 ));
 
   // reset logs every week
   // 1000 * 60 - one minute
