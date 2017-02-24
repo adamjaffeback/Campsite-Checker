@@ -35,7 +35,7 @@ module.exports = {
         }
       })
       .getText(waitForRegSelector, function( result ) {
-        if ( result.value !== 'Please check back for details.' ) {
+        if ( result.value !== 'Please check back daily for details.' ) {
           console.log( 'Check Back language has changed.' );
           sendMessage( 'Check Back language has changed. Go, go, go!' );
         }
